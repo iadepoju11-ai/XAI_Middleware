@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# Environment
+.env
+*.env.local
+
+# ML artefacts
+backend/models/*.pkl
+backend/models/*.joblib
+backend/audit.db
+*.db
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+locust_report*
