@@ -1,0 +1,35 @@
+# Install on Python 3.14: pip install --only-binary :all: -r requirements.txt
+
+# API
+flask==3.1.3
+flask-cors==6.0.5
+
+# ML
+xgboost==3.2.0
+scikit-learn==1.9.0
+pandas==3.0.3
+numpy==2.4.6
+
+# Explainability
+shap==0.52.0
+# dice-ml==0.11  # Uncomment for Phase 3 stretch goal: counterfactual explanations
+
+# Fairness
+fairlearn==0.14.0
+
+# ORM / DB
+sqlalchemy==2.0.50
+psycopg2-binary==2.9.12
+
+# Kafka (optional — KAFKA_ENABLED=false skips all connection attempts)
+kafka-python==2.3.2
+
+# Validation
+marshmallow==4.3.0
+
+# Testing
+pytest==9.0.3
+pytest-flask==1.3.0
+
+# Env
+python-dotenv==1.2.2
