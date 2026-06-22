@@ -10,9 +10,10 @@ build/
 .pytest_cache/
 .mypy_cache/
 
-# Environment
+# Environment & credentials — NEVER commit these
 .env
 *.env.local
+kaggle.json
 
 # ML artefacts
 backend/models/*.pkl
@@ -35,6 +36,14 @@ frontend/.vite/
 .DS_Store
 Thumbs.db
 
+# Data (large files — re-download with data/download_kaggle_datasets.py)
+data/home_credit/
+data/lending_club/
+# German Credit raw is small enough to commit; clean version is derived
+data/german_credit/german_credit_clean.csv
+
 # Logs
 *.log
+eval/locust_*.csv
+eval/locust_*.html
 locust_report*
