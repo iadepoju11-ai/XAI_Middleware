@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Backend: Start Flask",
+      "type": "shell",
+      "command": "DATABASE_URL=sqlite:///audit.db KAFKA_ENABLED=false .venv/bin/python app.py",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "group": "build",
+      "presentation": { "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: Start Vite dev server",
+      "type": "shell",
+      "command": "bash -c 'export NVM_DIR=\"$HOME/.nvm\" && [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\" && npm run dev'",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "group": "build",
+      "presentation": { "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: Start all services",
+      "type": "shell",
+      "command": "docker compose up -d",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "build",
+      "presentation": { "panel": "shared", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: Stop all services",
+      "type": "shell",
+      "command": "docker compose down",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "build",
+      "presentation": { "panel": "shared", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "DB: Seed legacy PostgreSQL",
+      "type": "shell",
+      "command": "../backend/.venv/bin/python seed_db.py",
+      "options": { "cwd": "${workspaceFolder}/legacy_simulator" },
+      "group": "build",
+      "presentation": { "panel": "shared", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: Run all tests",
+      "type": "shell",
+      "command": ".venv/bin/python -m pytest tests/ -v",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "group": "test",
+      "presentation": { "panel": "shared", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: Train model",
+      "type": "shell",
+      "command": ".venv/bin/python train_model.py",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "group": "build",
+      "presentation": { "panel": "shared", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Full stack: Start everything",
+      "dependsOn": [
+        "Docker: Start all services",
+        "Backend: Start Flask",
+        "Frontend: Start Vite dev server"
+      ],
+      "dependsOrder": "sequence",
+      "group": "build",
+      "presentation": { "panel": "shared", "reveal": "always" },
+      "problemMatcher": []
+    }
+  ]
+}
