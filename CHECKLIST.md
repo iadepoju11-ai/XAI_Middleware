@@ -7,28 +7,28 @@ Tracks implementation progress against PRD v1.0. Check off each item as it is **
 ## Phase 0 — Setup (Days 1–3)
 
 ### Environment
-- [x] Python 3.14.0 confirmed (>3.10 ✓)
-- [x] Node 26.1.0 confirmed (>18 ✓)
-- [ ] Docker Desktop running and `docker compose up -d` succeeds
+- [x] Python 3.14.4 confirmed (>3.10 ✓) — new PC: installed via apt; venv via virtualenv (no sudo required)
+- [x] Node 24.17.0 LTS confirmed (>18 ✓) — new PC: installed via nvm (no sudo required)
+- [x] Docker Desktop running and `docker compose up -d` succeeds — postgres:15 + kafka:7.5.0 + zookeeper:7.5.0 all Up
 - [x] Git repository initialised with `.gitignore` (Python + Node + `.env` + `*.pkl`)
 - [x] `.env.example` created with all variables from CLAUDE.md documented
 
 ### Backend Bootstrap
 - [x] `backend/requirements.txt` populated — pinned to Python 3.14 wheel-compatible versions; install with `pip install --only-binary :all: -r requirements.txt`
-- [x] `pip install` completes without errors (all 34 packages installed)
+- [x] `pip install` completes without errors (39 packages installed on new PC via virtualenv + `--only-binary :all:`)
 - [x] `backend/config.py` reads all env vars with sensible defaults
 - [x] `KAFKA_ENABLED=false` path works end-to-end without import errors
 
 ### Frontend Bootstrap
 - [x] `frontend/` scaffolded with Vite 5 + React 18
-- [x] `npm install` completes without errors (`npm config set strict-ssl false` required for corporate SSL)
-- [ ] `npm start` serves app on `localhost:3000`
+- [x] `npm install` completes without errors — 131 packages installed via nvm Node on new PC
+- [x] `npm start` serves app on `localhost:3000` — verified: HTTP 200, title "XAI Compliance Dashboard"
 - [x] Proxy `/api/*` → `localhost:5000` configured in `vite.config.js`
 
 ### Datasets
 - [x] `data/german_credit/german_credit.csv` — 1000 rows, 21 columns (downloaded via OpenML ID 31)
 - [x] `data/german_credit/german_credit_clean.csv` — encoded, model-ready (700 good / 300 bad; binary `sex` derived from `personal_status`)
-- [ ] `data/home_credit/` — requires accepting competition rules at kaggle.com/c/home-credit-default-risk first
+- [x] `data/home_credit/` — downloaded: application_train.csv (159MB) + 8 other files, 2.5GB total; kaggle token stored at ~/.kaggle/kaggle.json
 - [x] `data/lending_club/` — downloaded: accepted_2007_to_2018Q4.csv (1.56 GB) + rejected CSV (1.66 GB)
 
 ---
@@ -53,7 +53,7 @@ Tracks implementation progress against PRD v1.0. Check off each item as it is **
 ### Database
 - [x] Auto-migration via `Base.metadata.create_all(engine)` at module import
 - [x] SQLite dev path works (`DATABASE_URL=sqlite:///audit.db`)
-- [ ] PostgreSQL prod path works (requires `docker compose up -d`)
+- [x] PostgreSQL prod path works — `docker compose up -d` brings up postgres:15; seed_db.py seeded 1000 customers
 - [x] `application_id` column has index for fast lookups
 
 ---
@@ -78,9 +78,9 @@ Tracks implementation progress against PRD v1.0. Check off each item as it is **
 - [x] SHAP per-sample mean = **3.8ms** (target <100ms — PASS by 26x margin)
 
 ### Model Loading
-- [ ] `app.py` loads model + scaler once at startup (module-level, not per-request)
-- [ ] `GET /api/health` returns model version and load status
-- [ ] Missing model file raises clear error at startup, not at first request
+- [x] `app.py` loads model + scaler once at startup (module-level, not per-request)
+- [x] `GET /api/health` returns model version and load status — verified 200 OK, cv_auc=0.801
+- [x] Missing model file raises clear error at startup, not at first request — verified RuntimeError raised if .pkl missing
 
 ---
 
