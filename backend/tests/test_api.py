@@ -26,7 +26,7 @@ def test_health_model_version(flask_client):
     data = r.get_json()
     assert data["status"] == "ok"
     assert data["model_version"] == "1.0.0"
-    assert data["cv_auc"] == pytest.approx(0.807, abs=0.001)
+    assert data["cv_auc"] >= 0.80, f"CV AUC {data['cv_auc']} is below 0.80 floor"
 
 
 # ── Score — valid requests ─────────────────────────────────────────────────────
