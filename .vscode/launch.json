@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flask: Debug backend",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/app.py",
+      "python": "${workspaceFolder}/backend/.venv/bin/python",
+      "cwd": "${workspaceFolder}/backend",
+      "env": {
+        "DATABASE_URL": "sqlite:///audit.db",
+        "KAFKA_ENABLED": "false",
+        "FLASK_ENV": "development",
+        "FLASK_DEBUG": "1"
+      },
+      "console": "integratedTerminal",
+      "jinja": true
+    },
+    {
+      "name": "Flask: Debug backend (PostgreSQL)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/app.py",
+      "python": "${workspaceFolder}/backend/.venv/bin/python",
+      "cwd": "${workspaceFolder}/backend",
+      "env": {
+        "DATABASE_URL": "postgresql://admin:admin123@localhost:5432/legacy_bank",
+        "KAFKA_ENABLED": "false",
+        "FLASK_ENV": "development"
+      },
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Pytest: Run all tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "python": "${workspaceFolder}/backend/.venv/bin/python",
+      "cwd": "${workspaceFolder}/backend",
+      "args": ["tests/", "-v"],
+      "env": {
+        "DATABASE_URL": "sqlite:///test_audit.db",
+        "KAFKA_ENABLED": "false"
+      },
+      "console": "integratedTerminal"
+    }
+  ]
+}
