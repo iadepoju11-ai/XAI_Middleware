@@ -1,8 +1,8 @@
 {
   "model_name": "XGBoost",
   "model_version": "1.0.0",
-  "cv_auc": 0.807,
-  "holdout_auc": 0.7663,
+  "cv_auc": 0.801,
+  "holdout_auc": 0.7694,
   "n_features": 57,
   "best_params": {
     "colsample_bytree": 0.7,
@@ -10,6 +10,6 @@
     "max_depth": 3,
     "min_child_weight": 1,
     "n_estimators": 300,
-    "subsample": 0.7
+    "subsample": 0.9
   }
 }
