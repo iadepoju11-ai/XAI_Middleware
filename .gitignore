@@ -28,7 +28,6 @@ frontend/build/
 frontend/.vite/
 
 # IDE
-.vscode/
 .idea/
 *.swp
 
