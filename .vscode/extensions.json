@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    // Python & backend
+    "ms-python.python",
+    "ms-python.pylance",
+    "ms-python.debugpy",
+    // Docker
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+    // Frontend / JS
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "dsznajder.es7-react-js-snippets",
+    // Database
+    "cweijan.vscode-postgresql-client2",
+    // General
+    "editorconfig.editorconfig",
+    "eamodio.gitlens",
+    "gruntfuggly.todo-tree"
+  ]
+}
